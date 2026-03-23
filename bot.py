@@ -5,7 +5,7 @@ import os
 
 TOKEN = os.getenv("TOKEN3")
 
-LOG_CHANNEL_ID = 123456789012345678  # coloca o ID do canal de logs
+LOG_CHANNEL_ID = 1484325859681767475  # coloca o ID do canal de logs
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -13,7 +13,7 @@ intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 # ================= MODAL =================
-class FormModal(Modal, title="Formulário da Staff"):
+class FormModal(Modal, title="Staff Form"):
 
     pergunta1 = TextInput(
         label="Qual é o problema?",
