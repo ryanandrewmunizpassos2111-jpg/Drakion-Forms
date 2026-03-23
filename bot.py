@@ -48,6 +48,9 @@ class FormModal(Modal, title="Staff Form"):
         embed.add_field(name="Problema", value=self.pergunta1.value, inline=False)
         embed.add_field(name="Envolvidos", value=self.pergunta2.value, inline=False)
         embed.add_field(name="Provas", value=self.pergunta3.value or "Nenhuma", inline=False)
+        embed.set_footer(text="Drakion Auto Mod © | All Rights Reserved.", icon_url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048") 
+        embed.set_image(url="https://cdn.discordapp.com/attachments/1482181421341872259/1482192202976202783/output.png") 
+        embed.set_thumbnail(url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048")
 
         await channel.send(embed=embed)
 
@@ -78,6 +81,9 @@ async def formulario(ctx):
         description="Clique no botão abaixo para preencher o formulário.",
         color=discord.Color.blurple()
     )
+    embed.set_footer(text="Drakion Auto Mod © | All Rights Reserved.", icon_url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048") 
+    embed.set_image(url="https://cdn.discordapp.com/attachments/1482181421341872259/1482192202976202783/output.png") 
+    embed.set_thumbnail(url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048")
 
     await ctx.send(embed=embed, view=FormView())
 
