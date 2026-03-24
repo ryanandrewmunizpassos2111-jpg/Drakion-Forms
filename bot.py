@@ -86,7 +86,7 @@ class FormModalPt(Modal, title="Staff Form"):
     )
 
     async def on_submit(self, interaction: discord.Interaction):
-        channel = bot.get_channel(LOG_CHANNEL_ID)
+        channel = interaction.client.get_channel(LOG_CHANNEL_ID)
 
         embed = discord.Embed(
             title="📋 Novo formulário enviado",
@@ -241,7 +241,7 @@ class FormModalEn(Modal, title="Staff Form"):
 
     async def on_submit(self, interaction: discord.Interaction):
 
-        channel = bot.get_channel(LOG_CHANNEL_ID)
+        channel = interaction.client.get_channel(LOG_CHANNEL_ID)
 
         embed = discord.Embed(
             title="📋 New form submitted",
@@ -305,6 +305,8 @@ async def form(ctx):
 # ================= READY =================
 @bot.event
 async def on_ready():
+    bot.add_view(FormViewPT())
+    bot.add_view(FormViewEN())
     print(f"✅ Bot online como {bot.user}")
 
 bot.run(TOKEN)
