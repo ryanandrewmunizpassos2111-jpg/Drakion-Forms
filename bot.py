@@ -295,6 +295,7 @@ async def form(ctx):
         title="📋 Staff Application",
         description="Want to be part of the team and help the server grow?\nFill out the form carefully and answer everything with Sincerity.\n\n📌 We are looking for active, responsible and mature people.\n\n⚠️ Vague answers or jokes may result in rejection.\n\nClick the button below to start the form.",
         color=discord.Color.red()
+        )
     embed.set_footer(text="Drakion Auto Mod © | All Rights Reserved.", icon_url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048")
     embed.set_image(url="https://cdn.discordapp.com/attachments/1482181421341872259/1482192202976202783/output.png") 
     embed.set_thumbnail(url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048")
