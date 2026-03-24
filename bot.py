@@ -69,6 +69,12 @@ class FormModalPt2(Modal, title="Staff Form (2/2)"):
         embed.add_field(name="`Membro tóxico:`", value=self.pergunta8.value, inline=False)
         embed.add_field(name="`Inglês:`", value=self.pergunta9.value, inline=False)
         embed.add_field(name="`Motivo:`", value=self.pergunta10.value, inline=False)
+        embed.set_footer(
+        text="Drakion Forms © | All Rights Reserved.",
+        icon_url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048"
+        )
+        embed.set_image(url="https://cdn.discordapp.com/attachments/1482181421341872259/1482192202976202783/output.png")
+        embed.set_thumbnail(url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048")
 
         await channel.send(embed=embed)
         del user_forms[interaction.user.id]
@@ -87,11 +93,11 @@ class FormModalEn(Modal, title="Staff Form (1/2)"):
     async def on_submit(self, interaction: discord.Interaction):
         user_forms[interaction.user.id] = {
             "lang": "en",
-            "p1": self.q1.value,
-            "p2": self.q2.value,
-            "p3": self.q3.value,
-            "p4": self.q4.value,
-            "p5": self.q5.value,
+            "Nick:": self.q1.value,
+            "Idade:": self.q2.value,
+            "Tempo Discord:": self.q3.value,
+            "Tempo Roblox:`": self.q4.value,
+            "Opinião:": self.q5.value,
         }
 
         await interaction.response.send_message(
@@ -120,14 +126,21 @@ class FormModalEn2(Modal, title="Staff Form (2/2)"):
         embed = discord.Embed(title="📋 New form", color=discord.Color.blue())
         embed.add_field(name="User", value=interaction.user.mention, inline=False)
 
-        for i in range(1, 6):
-            embed.add_field(name=f"Q{i}", value=data[f"p{i}"], inline=False)
+        for key, value in data.items():
+            if key != "lang":
+                embed.add_field(name=f"`{key}`", value=value, inline=False)
 
-        embed.add_field(name="Q6", value=self.q6.value, inline=False)
-        embed.add_field(name="Q7", value=self.q7.value, inline=False)
-        embed.add_field(name="Q8", value=self.q8.value, inline=False)
-        embed.add_field(name="Q9", value=self.q9.value, inline=False)
-        embed.add_field(name="Q10", value=self.q10.value, inline=False)
+        embed.add_field(name="`Experiência:`", value=self.q6.value, inline=False)
+        embed.add_field(name="`Disponibilidade:`", value=self.q7.value, inline=False)
+        embed.add_field(name="`Membro tóxico:`", value=self.q8.value, inline=False)
+        embed.add_field(name="`Inglês:`", value=self.q9.value, inline=False)
+        embed.add_field(name="`Motivo:`", value=self.q10.value, inline=False)
+        embed.set_footer(
+        text="Drakion Forms © | All Rights Reserved.",
+        icon_url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048"
+        )
+        embed.set_image(url="https://cdn.discordapp.com/attachments/1482181421341872259/1482192202976202783/output.png")
+        embed.set_thumbnail(url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048")
 
         await channel.send(embed=embed)
         del user_forms[interaction.user.id]
