@@ -180,9 +180,8 @@ class FormModal(Modal, title="Staff Form"):
 
     placeholder="What games do you usually play?",
     required=True,
-
     max_length=300
-
+    )
 
     question5 = TextInput(
     label="5. 👀 What do you think of the server currently?",
@@ -191,7 +190,7 @@ class FormModal(Modal, title="Staff Form"):
     required=True,
 
     max_length=300
-
+    )
 
     question6 = TextInput(
     label="6. 🧠 Have you ever had experience as staff?",
@@ -201,7 +200,7 @@ class FormModal(Modal, title="Staff Form"):
     required=True,
 
     max_length=300
-
+    )
 
     question7 = TextInput(
     label="7. ⏱️ What is your daily availability?",
@@ -211,7 +210,7 @@ class FormModal(Modal, title="Staff Form"):
     required=True,
 
     max_length=300
-
+    )
 
     question8 = TextInput(
     label="8. 🚨 How would you deal with a toxic or disrespectful member?",
@@ -220,7 +219,7 @@ class FormModal(Modal, title="Staff Form"):
 
     required=True,
     max_length=300
-
+    )
 
     question9 = TextInput(
     label="9. 🌐 Do you understand English?", placeholder="If you find something in English and don't understand it, what would you do?",
@@ -228,7 +227,7 @@ class FormModal(Modal, title="Staff Form"):
     required=True,
 
     max_length=300
-
+    )
 
     question10 = TextInput(
     label="10. ⭐ Why should you be chosen for the staff?",
@@ -238,7 +237,7 @@ class FormModal(Modal, title="Staff Form"):
     required=True,
 
     max_length=300
-
+    )
 
     async def on_submit(self, interaction: discord.Interaction):
 
