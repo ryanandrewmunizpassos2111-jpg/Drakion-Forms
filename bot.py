@@ -116,7 +116,7 @@ class FormModal(Modal, title="Staff Form"):
         )
 
 # ================= BOTÃO =================
-class FormButton(Button):
+class ForButton(Button):
     def __init__(self):
         super().__init__(label="Enviar", style=discord.ButtonStyle.green)
 
