@@ -96,7 +96,7 @@ class FormModalEn(Modal, title="Staff Form (1/2)"):
             "Nick:": self.q1.value,
             "Idade:": self.q2.value,
             "Tempo Discord:": self.q3.value,
-            "Tempo Roblox:`": self.q4.value,
+            "Tempo Roblox:": self.q4.value,
             "Opinião:": self.q5.value,
         }
 
@@ -123,7 +123,7 @@ class FormModalEn2(Modal, title="Staff Form (2/2)"):
 
         channel = interaction.client.get_channel(LOG_CHANNEL_ID)
 
-        embed = discord.Embed(title="📋 New form", color=discord.Color.blue())
+        embed = discord.Embed(title="📋 New form", color=discord.Color.red())
         embed.add_field(name="User", value=interaction.user.mention, inline=False)
 
         for key, value in data.items():
