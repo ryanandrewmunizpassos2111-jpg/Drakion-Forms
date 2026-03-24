@@ -33,7 +33,11 @@ class FormModalPt(Modal, title="Staff Form (1/2)"):
             "p5": self.pergunta5.value,
         }
 
-        await interaction.response.send_modal(FormModalPt2())
+        await interaction.response.send_message(
+            "✅ Parte 1 enviada! Clique abaixo para continuar.",
+            view=NextFormView(),
+            ephemeral=True
+        )
 
 # ================= MODAL PT 2 =================
 class FormModalPt2(Modal, title="Staff Form (2/2)"):
@@ -89,7 +93,24 @@ class FormModalPt2(Modal, title="Staff Form (2/2)"):
             ephemeral=True
         )
 
-# ================= BOTÃO PT =================
+# ================= BOTÃO CONTINUAR =================
+class NextFormButton(Button):
+    def __init__(self):
+        super().__init__(
+            label="Continuar formulário",
+            style=discord.ButtonStyle.green,
+            custom_id="next_form_button"
+        )
+
+    async def callback(self, interaction: discord.Interaction):
+        await interaction.response.send_modal(FormModalPt2())
+
+class NextFormView(View):
+    def __init__(self):
+        super().__init__(timeout=60)
+        self.add_item(NextFormButton())
+
+# ================= BOTÃO INICIAL =================
 class FormButtonPt(Button):
     def __init__(self):
         super().__init__(
@@ -101,18 +122,18 @@ class FormButtonPt(Button):
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.send_modal(FormModalPt())
 
-# ================= VIEW PT =================
+# ================= VIEW =================
 class FormViewPt(View):
     def __init__(self):
         super().__init__(timeout=None)
         self.add_item(FormButtonPt())
 
-# ================= COMANDO PT =================
+# ================= COMANDO =================
 @bot.command()
 async def formulario(ctx):
     embed = discord.Embed(
         title="📋 Candidatura para Staff",
-        description="Quer fazer parte da equipe e ajudar o servidor a crescer?\nPreencha o formulário com atenção e responda tudo com sinceridade.\n\n📌 Procuramos pessoas ativas, responsáveis e com maturidade.\n\n⚠️ Respostas vagas ou brincadeiras podem resultar em punição.\n\nClique no botão abaixo para iniciar o formulário.",
+        description="Quer fazer parte da equipe e ajudar o servidor a crescer?\nPreencha o formulário com atenção e responda tudo com sinceridade.\n\n📌 Procuramos pessoas ativas, responsáveis e com maturidade.\n\n⚠️ Respostas vagas ou brincadeiras podem resultar em rejeição.\n\nClique no botão abaixo para iniciar o formulário.",
         color=discord.Color.red()
     )
 
