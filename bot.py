@@ -27,11 +27,11 @@ class FormModalPt(Modal, title="Staff Form (1/2)"):
     async def on_submit(self, interaction: discord.Interaction):
         user_forms[interaction.user.id] = {
             "lang": "pt",
-            "p1": self.pergunta1.value,
-            "p2": self.pergunta2.value,
-            "p3": self.pergunta3.value,
-            "p4": self.pergunta4.value,
-            "p5": self.pergunta5.value,
+            "Nick:": self.pergunta1.value,
+            "Idade:": self.pergunta2.value,
+            "Tempo Discord:": self.pergunta3.value,
+            "Tempo Roblox:": self.pergunta4.value,
+            "Opinião:": self.pergunta5.value,
         }
 
         await interaction.response.send_message(
@@ -57,22 +57,22 @@ class FormModalPt2(Modal, title="Staff Form (2/2)"):
 
         channel = interaction.client.get_channel(LOG_CHANNEL_ID)
 
-        embed = discord.Embed(title="📋 Novo formulário", color=discord.Color.blue())
+        embed = discord.Embed(title="📋 Novo formulário", color=discord.Color.red())
         embed.add_field(name="Usuário", value=interaction.user.mention, inline=False)
 
         for i in range(1, 6):
             embed.add_field(name=f"P{i}", value=data[f"p{i}"], inline=False)
 
-        embed.add_field(name="P6", value=self.pergunta6.value, inline=False)
-        embed.add_field(name="P7", value=self.pergunta7.value, inline=False)
-        embed.add_field(name="P8", value=self.pergunta8.value, inline=False)
-        embed.add_field(name="P9", value=self.pergunta9.value, inline=False)
-        embed.add_field(name="P10", value=self.pergunta10.value, inline=False)
+        embed.add_field(name="`Experiência:`", value=self.pergunta6.value, inline=False)
+        embed.add_field(name="`Disponibilidade:`", value=self.pergunta7.value, inline=False)
+        embed.add_field(name="`Membro tóxico:`", value=self.pergunta8.value, inline=False)
+        embed.add_field(name="`Inglês:`", value=self.pergunta9.value, inline=False)
+        embed.add_field(name="`Motivo:`", value=self.pergunta10.value, inline=False)
 
         await channel.send(embed=embed)
         del user_forms[interaction.user.id]
 
-        await interaction.response.send_message("✅ Enviado!", ephemeral=True)
+        await interaction.response.send_message("✅ Envio realizado com sucesso! Entraremos em contato caso você seja selecionado(a)!", ephemeral=True)
 
 # ================= MODAL EN 1 =================
 class FormModalEn(Modal, title="Staff Form (1/2)"):
@@ -131,7 +131,7 @@ class FormModalEn2(Modal, title="Staff Form (2/2)"):
         await channel.send(embed=embed)
         del user_forms[interaction.user.id]
 
-        await interaction.response.send_message("✅ Sent!", ephemeral=True)
+        await interaction.response.send_message("✅ Submitted successfully! We will contact you if you are selected!", ephemeral=True)
 
 # ================= BOTÕES =================
 class NextFormButtonPt(Button):
@@ -187,18 +187,32 @@ class FormViewEn(View):
 async def formulario(ctx):
     embed = discord.Embed(
         title="📋 Candidatura para Staff",
-        description="Clique no botão abaixo para iniciar.",
+        description="Quer fazer parte da equipe e ajudar o servidor a crescer?\nPreencha o formulário com atenção e responda tudo com sinceridade.\n\n📌 Procuramos pessoas ativas, responsáveis e com maturidade.\n\n⚠️ Respostas vagas ou brincadeiras podem resultar em punição.\n\nComplete as duas partes do formulário.\n\nClique no botão abaixo para iniciar o formulário.",
         color=discord.Color.red()
     )
+    embed.set_footer(
+        text="Drakion Forms © | All Rights Reserved.",
+        icon_url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048"
+    )
+    embed.set_image(url="https://cdn.discordapp.com/attachments/1482181421341872259/1482192202976202783/output.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048")
+    
     await ctx.send(embed=embed, view=FormViewPt())
 
 @bot.command()
 async def form(ctx):
     embed = discord.Embed(
         title="📋 Staff Application",
-        description="Click below to start.",
+        description="Want to be part of the team and help the server grow?\nFill out the form carefully and answer everything with Sincerity.\n\n📌 We are looking for active, responsible and mature people.\n\n⚠️ Vague answers or jokes may result in punishment.\n\nComplete both parts of the form.\n\nClick the button below to start the form.",
         color=discord.Color.red()
     )
+    embed.set_footer(
+        text="Drakion Forms © | All Rights Reserved.",
+        icon_url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048"
+    )
+    embed.set_image(url="https://cdn.discordapp.com/attachments/1482181421341872259/1482192202976202783/output.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048")
+    
     await ctx.send(embed=embed, view=FormViewEn())
 
 # ================= READY =================
