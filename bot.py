@@ -13,7 +13,7 @@ intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 # ================= MODAL =================
-class FormModal(Modal, title="Staff Form"):
+class FormModalPt(Modal, title="Staff Form"):
     
     pergunta1 = TextInput(
         label="1. 🧾 Qual é o seu nick (Discord e Roblox)?",
@@ -116,18 +116,18 @@ class FormModal(Modal, title="Staff Form"):
         )
 
 # ================= BOTÃO =================
-class ForButton(Button):
+class FormButtonPt(Button):
     def __init__(self):
         super().__init__(label="Enviar", style=discord.ButtonStyle.green)
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.send_modal(FormModal())
+        await interaction.response.send_modal(FormModalPt())
 
 # ================= VIEW =================
-class FormView(View):
+class FormViewPt(View):
     def __init__(self):
         super().__init__(timeout=None)
-        self.add_item(FormButton())
+        self.add_item(FormButtonPt())
 
 # ================= COMANDO =================
 @bot.command()
@@ -141,10 +141,10 @@ async def formulario(ctx):
     embed.set_image(url="https://cdn.discordapp.com/attachments/1482181421341872259/1482192202976202783/output.png") 
     embed.set_thumbnail(url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048")
 
-    await ctx.send(embed=embed, view=FormView())
+    await ctx.send(embed=embed, view=FormViewPt())
 
 # ================= MODAL English =================
-class FormModal(Modal, title="Staff Form"):
+class FormModalEn(Modal, title="Staff Form"):
 
     question1 = TextInput(
     label="1. 🧾 What is your nickname (Discord and Roblox)?",
@@ -274,18 +274,18 @@ class FormModal(Modal, title="Staff Form"):
         )
 
 # ================= BUTTON =================
-class FormButton(Button):
+class FormButtonEn(Button):
     def __init__(self):
         super().__init__(label="Send", style=discord.ButtonStyle.green)
         
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.send_modal(FormModal())
+        await interaction.response.send_modal(FormModalEn())
 
 # ================= VIEW =================
-class FormView(View):
+class FormViewEn(View):
     def __init__(self):
         super().__init__(timeout=None)
-        self.add_item(FormButton())
+        self.add_item(FormButtonEn())
 
 # ================= COMMAND =================
 @bot.command()
@@ -300,7 +300,7 @@ async def form(ctx):
     embed.set_image(url="https://cdn.discordapp.com/attachments/1482181421341872259/1482192202976202783/output.png") 
     embed.set_thumbnail(url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048")
 
-    await ctx.send(embed=embed, view=FormView())
+    await ctx.send(embed=embed, view=FormViewEn())
 
 # ================= READY =================
 @bot.event
