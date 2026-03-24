@@ -26,6 +26,7 @@ class FormModalPt(Modal, title="Staff Form (1/2)"):
 
     async def on_submit(self, interaction: discord.Interaction):
         user_forms[interaction.user.id] = {
+            "lang": "pt",
             "p1": self.pergunta1.value,
             "p2": self.pergunta2.value,
             "p3": self.pergunta3.value,
@@ -35,7 +36,7 @@ class FormModalPt(Modal, title="Staff Form (1/2)"):
 
         await interaction.response.send_message(
             "✅ Parte 1 enviada! Clique abaixo para continuar.",
-            view=NextFormView(),
+            view=NextFormViewPt(),
             ephemeral=True
         )
 
@@ -52,105 +53,159 @@ class FormModalPt2(Modal, title="Staff Form (2/2)"):
         data = user_forms.get(interaction.user.id)
 
         if not data:
-            await interaction.response.send_message("Erro ao salvar respostas.", ephemeral=True)
-            return
+            return await interaction.response.send_message("Erro.", ephemeral=True)
 
         channel = interaction.client.get_channel(LOG_CHANNEL_ID)
 
-        embed = discord.Embed(
-            title="📋 Novo formulário enviado",
-            color=discord.Color.blue()
-        )
+        embed = discord.Embed(title="📋 Novo formulário", color=discord.Color.blue())
+        embed.add_field(name="Usuário", value=interaction.user.mention, inline=False)
 
-        embed.add_field(name="`Usuário:`", value=interaction.user.mention, inline=False)
+        for i in range(1, 6):
+            embed.add_field(name=f"P{i}", value=data[f"p{i}"], inline=False)
 
-        embed.add_field(name="`Nick:`", value=data["p1"], inline=False)
-        embed.add_field(name="`Idade:`", value=data["p2"], inline=False)
-        embed.add_field(name="`Tempo Discord:`", value=data["p3"], inline=False)
-        embed.add_field(name="`Tempo Roblox:`", value=data["p4"], inline=False)
-        embed.add_field(name="`Opinião:`", value=data["p5"], inline=False)
-
-        embed.add_field(name="`Experiência:`", value=self.pergunta6.value, inline=False)
-        embed.add_field(name="`Disponibilidade:`", value=self.pergunta7.value, inline=False)
-        embed.add_field(name="`Membro tóxico:`", value=self.pergunta8.value, inline=False)
-        embed.add_field(name="`Inglês:`", value=self.pergunta9.value, inline=False)
-        embed.add_field(name="`Motivo:`", value=self.pergunta10.value, inline=False)
-
-        embed.set_footer(
-            text="Drakion Forms © | All Rights Reserved.",
-            icon_url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048"
-        )
-
-        embed.set_image(url="https://cdn.discordapp.com/attachments/1482181421341872259/1482192202976202783/output.png")
-        embed.set_thumbnail(url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048")
+        embed.add_field(name="P6", value=self.pergunta6.value, inline=False)
+        embed.add_field(name="P7", value=self.pergunta7.value, inline=False)
+        embed.add_field(name="P8", value=self.pergunta8.value, inline=False)
+        embed.add_field(name="P9", value=self.pergunta9.value, inline=False)
+        embed.add_field(name="P10", value=self.pergunta10.value, inline=False)
 
         await channel.send(embed=embed)
-
         del user_forms[interaction.user.id]
 
+        await interaction.response.send_message("✅ Enviado!", ephemeral=True)
+
+# ================= MODAL EN 1 =================
+class FormModalEn(Modal, title="Staff Form (1/2)"):
+
+    q1 = TextInput(label="1.What is your nickname?", required=True)
+    q2 = TextInput(label="2.What is your age?", required=True)
+    q3 = TextInput(label="3.How long using Discord?", required=True)
+    q4 = TextInput(label="4.How long playing Roblox?", required=True)
+    q5 = TextInput(label="5.What do you think of server?", required=True)
+
+    async def on_submit(self, interaction: discord.Interaction):
+        user_forms[interaction.user.id] = {
+            "lang": "en",
+            "p1": self.q1.value,
+            "p2": self.q2.value,
+            "p3": self.q3.value,
+            "p4": self.q4.value,
+            "p5": self.q5.value,
+        }
+
         await interaction.response.send_message(
-            "✅ Formulário enviado com sucesso!",
+            "✅ Part 1 done! Click below to continue.",
+            view=NextFormViewEn(),
             ephemeral=True
         )
 
-# ================= BOTÃO CONTINUAR =================
-class NextFormButton(Button):
+# ================= MODAL EN 2 =================
+class FormModalEn2(Modal, title="Staff Form (2/2)"):
+
+    q6 = TextInput(label="6.Staff experience?", required=True)
+    q7 = TextInput(label="7.Availability?", required=True)
+    q8 = TextInput(label="8.How handle toxic user?", required=True)
+    q9 = TextInput(label="9.Do you understand English?", required=True)
+    q10 = TextInput(label="10.Why should you be staff?", required=True)
+
+    async def on_submit(self, interaction: discord.Interaction):
+        data = user_forms.get(interaction.user.id)
+
+        if not data:
+            return await interaction.response.send_message("Error.", ephemeral=True)
+
+        channel = interaction.client.get_channel(LOG_CHANNEL_ID)
+
+        embed = discord.Embed(title="📋 New form", color=discord.Color.blue())
+        embed.add_field(name="User", value=interaction.user.mention, inline=False)
+
+        for i in range(1, 6):
+            embed.add_field(name=f"Q{i}", value=data[f"p{i}"], inline=False)
+
+        embed.add_field(name="Q6", value=self.q6.value, inline=False)
+        embed.add_field(name="Q7", value=self.q7.value, inline=False)
+        embed.add_field(name="Q8", value=self.q8.value, inline=False)
+        embed.add_field(name="Q9", value=self.q9.value, inline=False)
+        embed.add_field(name="Q10", value=self.q10.value, inline=False)
+
+        await channel.send(embed=embed)
+        del user_forms[interaction.user.id]
+
+        await interaction.response.send_message("✅ Sent!", ephemeral=True)
+
+# ================= BOTÕES =================
+class NextFormButtonPt(Button):
     def __init__(self):
-        super().__init__(
-            label="Continuar formulário",
-            style=discord.ButtonStyle.green,
-            custom_id="next_form_button"
-        )
+        super().__init__(label="Continuar", style=discord.ButtonStyle.green, custom_id="next_pt")
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.send_modal(FormModalPt2())
 
-class NextFormView(View):
+class NextFormViewPt(View):
     def __init__(self):
         super().__init__(timeout=60)
-        self.add_item(NextFormButton())
+        self.add_item(NextFormButtonPt())
 
-# ================= BOTÃO INICIAL =================
-class FormButtonPt(Button):
+class NextFormButtonEn(Button):
     def __init__(self):
-        super().__init__(
-            label="Enviar",
-            style=discord.ButtonStyle.green,
-            custom_id="form_button_pt"
-        )
+        super().__init__(label="Continue", style=discord.ButtonStyle.green, custom_id="next_en")
 
     async def callback(self, interaction: discord.Interaction):
+        await interaction.response.send_modal(FormModalEn2())
+
+class NextFormViewEn(View):
+    def __init__(self):
+        super().__init__(timeout=60)
+        self.add_item(NextFormButtonEn())
+
+class FormButtonPt(Button):
+    def __init__(self):
+        super().__init__(label="Enviar", style=discord.ButtonStyle.green, custom_id="form_pt")
+
+    async def callback(self, interaction):
         await interaction.response.send_modal(FormModalPt())
 
-# ================= VIEW =================
+class FormButtonEn(Button):
+    def __init__(self):
+        super().__init__(label="Send", style=discord.ButtonStyle.green, custom_id="form_en")
+
+    async def callback(self, interaction):
+        await interaction.response.send_modal(FormModalEn())
+
 class FormViewPt(View):
     def __init__(self):
         super().__init__(timeout=None)
         self.add_item(FormButtonPt())
 
-# ================= COMANDO =================
+class FormViewEn(View):
+    def __init__(self):
+        super().__init__(timeout=None)
+        self.add_item(FormButtonEn())
+
+# ================= COMANDOS =================
 @bot.command()
 async def formulario(ctx):
     embed = discord.Embed(
         title="📋 Candidatura para Staff",
-        description="Quer fazer parte da equipe e ajudar o servidor a crescer?\nPreencha o formulário com atenção e responda tudo com sinceridade.\n\n📌 Procuramos pessoas ativas, responsáveis e com maturidade.\n\n⚠️ Respostas vagas ou brincadeiras podem resultar em rejeição.\n\nClique no botão abaixo para iniciar o formulário.",
+        description="Clique no botão abaixo para iniciar.",
         color=discord.Color.red()
     )
-
-    embed.set_footer(
-        text="Drakion Forms © | All Rights Reserved.",
-        icon_url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048"
-    )
-
-    embed.set_image(url="https://cdn.discordapp.com/attachments/1482181421341872259/1482192202976202783/output.png")
-    embed.set_thumbnail(url="https://cdn.discordapp.com/icons/1481089628374171651/de6d926a6fd65da6b783a0f96e929b49.png?size=2048")
-
     await ctx.send(embed=embed, view=FormViewPt())
+
+@bot.command()
+async def form(ctx):
+    embed = discord.Embed(
+        title="📋 Staff Application",
+        description="Click below to start.",
+        color=discord.Color.red()
+    )
+    await ctx.send(embed=embed, view=FormViewEn())
 
 # ================= READY =================
 @bot.event
 async def on_ready():
     bot.add_view(FormViewPt())
+    bot.add_view(FormViewEn())
     print(f"✅ Bot online como {bot.user}")
 
 bot.run(TOKEN)
