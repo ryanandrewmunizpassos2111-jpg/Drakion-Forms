@@ -16,70 +16,70 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 class FormModalPt(Modal, title="Staff Form"):
     
     pergunta1 = TextInput(
-        label="1. 🧾 Qual é o seu nick (Discord e Roblox)?",
+        label="1.Qual é o seu nick (Discord e Roblox)?",
         placeholder="Nick: ",
         required=True,
         max_length=300
     )
 
     pergunta2 = TextInput(
-        label="2. 🎂 Qual é a sua idade?",
+        label="2.Qual é a sua idade?",
         placeholder="Idade: ",
         required=True,
         max_length=200
     )
 
     pergunta3 = TextInput(
-        label="3. ⏳ Há quanto tempo você usa Discord?",
+        label="3.Há quanto tempo você usa Discord?",
         placeholder="Tempo: ",
         required=True,
         max_length=300
     )
 
     pergunta4 = TextInput(
-        label="4. 🎮 Há quanto tempo você joga Roblox?",
+        label="4.Há quanto tempo você joga Roblox?",
         placeholder="Quais jogos costuma jogar?",
         required=True,
         max_length=300
     )
 
     pergunta5 = TextInput(
-        label="5. 👀 O que você acha do servidor atualmente?",
+        label="5.O que você acha do servidor atualmente?",
         placeholder="(O que você mudaria ou melhoraria?)",
         required=True,
         max_length=300
     )
 
     pergunta6 = TextInput(
-        label="6. 🧠 Você já teve experiência como staff?",
+        label="6.Você já teve experiência como staff?",
         placeholder="Se sim, explique brevemente.",
         required=True,
         max_length=300
     )
 
     pergunta7 = TextInput(
-        label="7. ⏱️ Qual é a sua disponibilidade diária?",
+        label="7.Qual é a sua disponibilidade diária?",
         placeholder="(Informe horários se possível)",
         required=True,
         max_length=300
     )
 
     pergunta8 = TextInput(
-        label="8. 🚨 Como você lidaria com um membro tóxico ou desrespeitoso?",
+        label="8.Como você lidaria com um membro tóxico?",
         placeholder="Como:",
         required=True,
         max_length=300
     )
 
     pergunta9 = TextInput(
-        label="9. 🌐 Você entende inglês",
-        placeholder="Se encontrar algo em inglês e não entender, o que faria?",
+        label="9.Você entende inglês",
+        placeholder="Qual seu nível?",
         required=True,
         max_length=300
     )
 
     pergunta10 = TextInput(
-        label="10. ⭐ Por que você deve ser escolhido para a staff?",
+        label="10.Por que deve ser escolhido para a staff?",
         placeholder="Porque: ",
         required=True,
         max_length=300
@@ -118,7 +118,7 @@ class FormModalPt(Modal, title="Staff Form"):
 # ================= BOTÃO =================
 class FormButtonPt(Button):
     def __init__(self):
-        super().__init__(label="Enviar", style=discord.ButtonStyle.green)
+        super().__init__(label="Enviar", style=discord.ButtonStyle.green, custom_id="form_button_Pt")
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.send_modal(FormModalPt())
@@ -147,7 +147,7 @@ async def formulario(ctx):
 class FormModalEn(Modal, title="Staff Form"):
 
     question1 = TextInput(
-    label="1. 🧾 What is your nickname (Discord and Roblox)?",
+    label="1.What is your nickname (Discord and Roblox)?",
 
     placeholder="Nickname: ",
     required=True,
@@ -156,7 +156,7 @@ class FormModalEn(Modal, title="Staff Form"):
     )
 
     question2 = TextInput(
-    label="2. 🎂 What is your age?",
+    label="2.What is your age?",
 
     placeholder="Age: ",
     required=True,
@@ -166,7 +166,7 @@ class FormModalEn(Modal, title="Staff Form"):
     )
 
     question3 = TextInput(
-    label="3. ⏳ How long have you been using Discord?",
+    label="3.How long have you been using Discord?",
 
     placeholder="Time: ",
     required=True,
@@ -176,7 +176,7 @@ class FormModalEn(Modal, title="Staff Form"):
     )
 
     question4 = TextInput(
-    label="4. 🎮 How long have you been playing Roblox?",
+    label="4.How long have you been playing Roblox?",
 
     placeholder="What games do you usually play?",
     required=True,
@@ -184,7 +184,7 @@ class FormModalEn(Modal, title="Staff Form"):
     )
 
     question5 = TextInput(
-    label="5. 👀 What do you think of the server currently?",
+    label="5.What do you think of the server currently?",
 
     placeholder="(What would you change or improve?)",
     required=True,
@@ -193,7 +193,7 @@ class FormModalEn(Modal, title="Staff Form"):
     )
 
     question6 = TextInput(
-    label="6. 🧠 Have you ever had experience as staff?",
+    label="6.Have you ever had experience as staff?",
 
     placeholder="If so, please explain briefly.",
 
@@ -203,7 +203,7 @@ class FormModalEn(Modal, title="Staff Form"):
     )
 
     question7 = TextInput(
-    label="7. ⏱️ What is your daily availability?",
+    label="7.What is your daily availability?",
 
     placeholder="(Please specify hours if possible)",
 
@@ -213,7 +213,7 @@ class FormModalEn(Modal, title="Staff Form"):
     )
 
     question8 = TextInput(
-    label="8. 🚨 How would you deal with a toxic or disrespectful member?",
+    label="8.How would you deal with a toxic colleague?",
 
     placeholder="How:",
 
@@ -222,7 +222,7 @@ class FormModalEn(Modal, title="Staff Form"):
     )
 
     question9 = TextInput(
-    label="9. 🌐 Do you understand English?", placeholder="If you find something in English and don't understand it, what would you do?",
+    label="9.Do you understand Portuguese?", placeholder="What's your level?",
 
     required=True,
 
@@ -230,7 +230,7 @@ class FormModalEn(Modal, title="Staff Form"):
     )
 
     question10 = TextInput(
-    label="10. ⭐ Why should you be chosen for the staff?",
+    label="10.Why should you be chosen for the staff?",
 
     placeholder="Because: ",
 
@@ -276,7 +276,7 @@ class FormModalEn(Modal, title="Staff Form"):
 # ================= BUTTON =================
 class FormButtonEn(Button):
     def __init__(self):
-        super().__init__(label="Send", style=discord.ButtonStyle.green)
+        super().__init__(label="Send", style=discord.ButtonStyle.green, custom_id="form_button_En")
         
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.send_modal(FormModalEn())
