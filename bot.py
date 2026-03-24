@@ -60,8 +60,9 @@ class FormModalPt2(Modal, title="Staff Form (2/2)"):
         embed = discord.Embed(title="📋 Novo formulário", color=discord.Color.red())
         embed.add_field(name="Usuário", value=interaction.user.mention, inline=False)
 
-        for i in range(1, 6):
-            embed.add_field(name=f"P{i}", value=data[f"p{i}"], inline=False)
+        for key, value in data.items():
+            if key != "lang":
+                embed.add_field(name=f"`{key}`", value=value, inline=False)
 
         embed.add_field(name="`Experiência:`", value=self.pergunta6.value, inline=False)
         embed.add_field(name="`Disponibilidade:`", value=self.pergunta7.value, inline=False)
