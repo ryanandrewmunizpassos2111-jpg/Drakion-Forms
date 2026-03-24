@@ -305,8 +305,8 @@ async def form(ctx):
 # ================= READY =================
 @bot.event
 async def on_ready():
-    bot.add_view(FormViewPT())
-    bot.add_view(FormViewEN())
+    bot.add_view(FormViewPt())
+    bot.add_view(FormViewEn())
     print(f"✅ Bot online como {bot.user}")
 
 bot.run(TOKEN)
